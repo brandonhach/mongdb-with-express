@@ -18,12 +18,4 @@ exports.updateById = function (id, newStory) {
 	return stories.updateOne({ _id: new ObjectId(id) }, { $set: { title: newStory.title, content: newStory.content } });
 };
 
-exports.deleteById = function (id) {
-	let index = stories.findIndex((story) => story.id === id);
-	if (index !== -1) {
-		stories.splice(index, 1);
-		return true;
-	} else {
-		return false;
-	}
-};
+exports.deleteById = (id) => stories.deleteOne({ _id: new ObjectId(id) });
