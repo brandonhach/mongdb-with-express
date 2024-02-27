@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const storyRoutes = require('./routes/storyRoutes');
 const { MongoClient } = require('mongodb');
+const { getCollection } = require('./models/story');
 
 //create app
 const app = express();
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 MongoClient.connect(url)
 	.then((client) => {
 		const db = client.db('demos');
+		getCollection(db);
 		//start the server
 		app.listen(port, host, () => {
 			console.log('Server is running on port', port);
