@@ -15,14 +15,7 @@ exports.findById = (id) => stories.findOne({ _id: new ObjectId(id) });
 exports.save = (story) => stories.insertOne(story);
 
 exports.updateById = function (id, newStory) {
-	let story = stories.find((story) => story.id === id);
-	if (story) {
-		story.title = newStory.title;
-		story.content = newStory.content;
-		return true;
-	} else {
-		return false;
-	}
+	return stories.updateOne({ _id: new ObjectId(id) }, { $set: { title: newStory.title, content: newStory.content } });
 };
 
 exports.deleteById = function (id) {
