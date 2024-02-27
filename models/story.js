@@ -7,7 +7,7 @@ exports.getCollection = (db) => {
 	stories = db.collection('stories');
 };
 
-exports.find = () => stories;
+exports.find = () => stories.find().toArray();
 
 exports.findById = (id) => stories.find((story) => story.id === id);
 
